@@ -61,6 +61,9 @@ export const useLycheeStateStore = defineStore("lychee-store", {
 		// menu stuff
 		clockwork_url: "" as null | string,
 
+		// Timeline settings
+		is_timeline_left_border_visible: true,
+
 		// Site title & Dropbox API key
 		title: "lychee.GALLERY",
 		dropbox_api_key: "disabled",
@@ -120,6 +123,8 @@ export const useLycheeStateStore = defineStore("lychee-store", {
 					this.clockwork_url = data.clockwork_url;
 
 					this.slideshow_timeout = data.slideshow_timeout;
+
+					this.is_timeline_left_border_visible = data.is_timeline_left_border_visible;
 
 					this.title = data.title;
 					this.dropbox_api_key = data.dropbox_api_key;

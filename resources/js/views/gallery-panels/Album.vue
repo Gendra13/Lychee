@@ -53,6 +53,7 @@
 					@contexted="albumMenuOpen"
 					:idx-shift="0"
 					:selected-albums="selectedAlbumsIds"
+					:is-timeline="config.is_album_timeline_enabled"
 				/>
 				<PhotoThumbPanel
 					v-if="layoutConfig !== null && photos !== null && photos.length > 0"
@@ -64,6 +65,7 @@
 					:selected-photos="selectedPhotosIds"
 					@clicked="photoClick"
 					@contexted="photoMenuOpen"
+					:is-timeline="config.is_photo_timeline_enabled"
 				/>
 				<GalleryFooter v-once />
 			</div>
