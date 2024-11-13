@@ -53,17 +53,18 @@
 					@contexted="albumMenuOpen"
 					:idx-shift="0"
 					:selected-albums="selectedAlbumsIds"
+					:is-timeline="false"
 				/>
 				<div class="flex justify-center w-full" v-if="photos.length > 0">
 					<Paginator :total-records="total" :rows="per_page" v-model:first="from" @update:first="refresh" :always-show="false" />
 				</div>
 				<PhotoThumbPanel
-					v-if="layout !== null && photos.length > 0"
-					:photo-layout="configForMenu.photo_layout"
+					v-if="layoutConfig !== null && photos.length > 0"
+					:photo-layout="layout"
 					:header="photoHeader"
 					:photos="photos"
 					:album="undefined"
-					:gallery-config="layout"
+					:gallery-config="layoutConfig"
 					:selected-photos="selectedPhotosIds"
 					@clicked="photoClick"
 					@contexted="photoMenuOpen"
@@ -158,6 +159,7 @@ import MoveDialog from "@/components/forms/gallery-dialogs/MoveDialog.vue";
 import DeleteDialog from "@/components/forms/gallery-dialogs/DeleteDialog.vue";
 import PhotoService from "@/services/photo-service";
 import AlbumService from "@/services/album-service";
+import { useGetLayoutConfig } from "@/layouts/PhotoLayout";
 
 const router = useRouter();
 const props = defineProps<{
@@ -179,6 +181,7 @@ lycheeStore.init();
 const { are_nsfw_visible, is_full_screen, search_page, search_term, is_login_open, nsfw_consented, is_upload_visible } = storeToRefs(lycheeStore);
 const {
 	albums,
+	layout,
 	photos,
 	noData,
 	searchMinimumLengh,
@@ -193,7 +196,10 @@ const {
 	clear,
 	refresh,
 } = useSearch(albumid, lycheeStore, search_term, search_page);
-const { album, config, layout, loadAlbum, loadLayout } = useAlbumRefresher(albumid, auth, is_login_open, nsfw_consented);
+
+const { layoutConfig, loadLayoutConfig } = useGetLayoutConfig();
+
+const { album, config, loadAlbum } = useAlbumRefresher(albumid, auth, is_login_open, nsfw_consented);
 
 const configForMenu = computed<App.Http.Resources.GalleryConfigs.AlbumConfig>(() => {
 	if (config.value !== undefined) {
@@ -212,7 +218,7 @@ const configForMenu = computed<App.Http.Resources.GalleryConfigs.AlbumConfig>(()
 		photo_layout: "justified",
 	};
 });
-const albumForMenu = albumid.value !== "" ? album : null;
+const albumForMenu = albumid.value !== "" ? album : undefined;
 
 const title = computed<string>(() => {
 	if (album.value === undefined) {
@@ -315,7 +321,7 @@ if (albumid.value !== "") {
 }
 
 searchInit();
-loadLayout();
+loadLayoutConfig();
 
 if (lycheeStore.isSearchActive) {
 	search(lycheeStore.search_term);

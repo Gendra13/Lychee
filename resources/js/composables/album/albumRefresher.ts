@@ -9,7 +9,6 @@ export function useAlbumRefresher(albumId: Ref<string>, auth: AuthStore, isLogin
 	const tagAlbum = ref(undefined as undefined | App.Http.Resources.Models.TagAlbumResource);
 	const smartAlbum = ref(undefined as undefined | App.Http.Resources.Models.SmartAlbumResource);
 	const album = computed(() => modelAlbum.value || tagAlbum.value || smartAlbum.value);
-	const layout = ref(null) as Ref<null | App.Http.Resources.GalleryConfigs.PhotoLayoutConfig>;
 	const isAlbumConsented = ref(false);
 
 	const photos = ref([]) as Ref<App.Http.Resources.Models.PhotoResource[]>;
@@ -54,12 +53,6 @@ export function useAlbumRefresher(albumId: Ref<string>, auth: AuthStore, isLogin
 			});
 	}
 
-	function loadLayout() {
-		AlbumService.getLayout().then((data) => {
-			layout.value = data.data;
-		});
-	}
-
 	function refresh() {
 		loadUser();
 	}
@@ -74,12 +67,10 @@ export function useAlbumRefresher(albumId: Ref<string>, auth: AuthStore, isLogin
 		smartAlbum,
 		album,
 		rights,
-		layout,
 		photos,
 		config,
 		loadUser,
 		loadAlbum,
-		loadLayout,
 		refresh,
 	};
 }

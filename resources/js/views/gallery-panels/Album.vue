@@ -55,11 +55,11 @@
 					:selected-albums="selectedAlbumsIds"
 				/>
 				<PhotoThumbPanel
-					v-if="layout !== null && photos !== null && photos.length > 0"
+					v-if="layoutConfig !== null && photos !== null && photos.length > 0"
 					header="lychee.PHOTOS"
 					:photos="photos"
 					:album="album"
-					:gallery-config="layout"
+					:gallery-config="layoutConfig"
 					:photo-layout="config.photo_layout"
 					:selected-photos="selectedPhotosIds"
 					@clicked="photoClick"
@@ -201,6 +201,7 @@ import Button from "primevue/button";
 import { useMouseEvents } from "@/composables/album/uploadEvents";
 import GalleryFooter from "@/components/footers/GalleryFooter.vue";
 import AlbumStatistics from "@/components/drawers/AlbumStatistics.vue";
+import { useGetLayoutConfig } from "@/layouts/PhotoLayout";
 
 const route = useRoute();
 const router = useRouter();
@@ -230,8 +231,10 @@ function toggleSlideShow() {
 	router.push({ name: "photo", params: { albumid: album.value.id, photoid: album.value.photos[0].id } });
 }
 
+const { layoutConfig, loadLayoutConfig } = useGetLayoutConfig();
+
 // Set up Album ID reference. This one is updated at each page change.
-const { isAlbumConsented, isPasswordProtected, user, modelAlbum, album, rights, layout, photos, config, loadLayout, refresh } = useAlbumRefresher(
+const { isAlbumConsented, isPasswordProtected, user, modelAlbum, album, rights, photos, config, refresh } = useAlbumRefresher(
 	albumid,
 	auth,
 	is_login_open,
@@ -359,7 +362,7 @@ function consent() {
 	isAlbumConsented.value = true;
 }
 
-loadLayout();
+loadLayoutConfig();
 
 refresh();
 

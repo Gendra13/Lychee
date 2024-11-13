@@ -194,8 +194,8 @@ const albumCallbacks = {
 
 const { menu, Menu, albumMenuOpen } = useContextMenu(
 	{
-		config: null,
-		album: null,
+		config: undefined,
+		album: undefined,
 		selectedPhoto: undefined,
 		selectedPhotos: undefined,
 		selectedPhotosIdx: undefined,
