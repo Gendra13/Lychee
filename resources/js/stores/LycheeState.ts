@@ -35,6 +35,9 @@ export const useLycheeStateStore = defineStore("lychee-store", {
 		search_album_id: undefined as string | undefined,
 		search_page: 1,
 
+		// Timeline stuff
+		timeline_page: 1,
+
 		// configs for nsfw
 		are_nsfw_visible: false,
 		is_nsfw_background_blurred: false,
