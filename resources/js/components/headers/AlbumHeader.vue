@@ -21,7 +21,7 @@
 			</router-link>
 			<router-link
 				:to="{ name: 'map-with-album', params: { albumid: props.album.id } }"
-				v-if="props.config.is_map_accessible && hasCoordinates"
+				v-if="props.config.is_map_accessible"
 				class="hidden sm:block"
 			>
 				<Button icon="pi pi-map" class="border-none" severity="secondary" text />
