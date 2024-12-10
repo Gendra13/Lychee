@@ -112,13 +112,13 @@ jobs:
         run: php artisan migrate:rollback
 
       - name: Codecov
-        uses: codecov/codecov-action@015f24e6818733317a2da2edd6290ab26238649a # v5.0.7
+        uses: codecov/codecov-action@7f8b4b4bde536c465e797be725718b88c5d95e0e # v5.1.1
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: SonarCloud Scan
         if: ${{ env.SONAR_TOKEN }}
-        uses: SonarSource/sonarcloud-github-action@982992a35a56c6bebd7c76c65e5c3e4c18e634c8 # master
+        uses: SonarSource/sonarcloud-github-action@02ef91109b2d589e757aefcfb2854c2783fd7b19 # master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
