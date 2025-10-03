@@ -70,7 +70,7 @@
 							<i class="pi pi-desktop" />
 						</router-link>
 						<router-link
-							v-if="albumStore.config?.is_map_accessible && hasCoordinates"
+							v-if="albumStore.config?.is_map_accessible"
 							:to="{ name: 'map', params: { albumId: albumStore.album.id } }"
 							class="shrink-0 px-3 cursor-pointer text-muted-color inline-block transform duration-300 hover:scale-150 hover:text-color"
 						>
