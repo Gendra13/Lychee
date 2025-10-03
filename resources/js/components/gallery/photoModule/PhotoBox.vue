@@ -18,7 +18,7 @@
 			height="auto"
 			controls
 			class="absolute m-auto w-auto h-auto"
-			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-56px)] max-h-[calc(100%-56px)]'"
+			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-5px)] max-h-[calc(100%-5px)]'"
 			autobuffer
 			:autoplay="lycheeStore.can_autoplay"
 		>
@@ -55,7 +55,7 @@
 			alt="medium"
 			class="absolute m-auto w-auto h-auto bg-contain bg-center bg-no-repeat"
 			:src="photoStore.photo.size_variants.medium?.url ?? ''"
-			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-56px)] max-h-[calc(100%-56px)]'"
+			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-5px)] max-h-[calc(100%-5px)]'"
 			:srcset="photoStore.srcSetMedium"
 		/>
 		<img
@@ -63,7 +63,7 @@
 			id="image"
 			alt="big"
 			class="absolute m-auto w-auto h-auto bg-contain bg-center bg-no-repeat"
-			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-56px)] max-h-[calc(100%-56px)]'"
+			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-5px)] max-h-[calc(100%-5px)]'"
 			:style="photoStore.style"
 			:src="photoStore.photo.size_variants.original?.url ?? ''"
 		/>
@@ -76,7 +76,7 @@
 			:data-photo-src="photoStore.photo.size_variants.medium?.url"
 			:data-video-src="photoStore.photo.live_photo_url"
 			class="absolute m-auto w-auto h-auto"
-			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-56px)] max-h-[calc(100%-56px)]'"
+			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-5px)] max-h-[calc(100%-5px)]'"
 			:style="photoStore.style"
 		></div>
 		<!-- This is a livephoto : full -->
@@ -88,7 +88,7 @@
 			:data-photo-src="photoStore.photo.size_variants.original?.url"
 			:data-video-src="photoStore.photo.live_photo_url"
 			class="absolute m-auto w-auto h-auto"
-			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-56px)] max-h-[calc(100%-56px)]'"
+			:class="is_full_screen || is_slideshow_active ? 'max-w-full max-h-full' : 'max-w-full md:max-w-[calc(100%-5px)] max-h-[calc(100%-5px)]'"
 			:style="photoStore.style"
 		></div>
 	</div>
