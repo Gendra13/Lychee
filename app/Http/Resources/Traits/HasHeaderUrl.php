@@ -43,7 +43,7 @@ trait HasHeaderUrl
 		if ($album instanceof Album && $album->header_id !== null) {
 			$header_size_variant = SizeVariant::query()
 				->where('photo_id', '=', $album->header_id)
-				->whereIn('type', [SizeVariantType::MEDIUM, SizeVariantType::SMALL2X, SizeVariantType::SMALL])
+				->whereIn('type', [SizeVariantType::MEDIUM2X, SizeVariantType::MEDIUM, SizeVariantType::SMALL2X, SizeVariantType::SMALL])
 				->orderBy('type', 'asc')
 				->first();
 		}
@@ -56,7 +56,7 @@ trait HasHeaderUrl
 					->select('photo_id')
 					->whereBelongsTo($album->get_photos())
 					->where('ratio', '>', 1) // ! we prefer landscape first.
-					->whereIn('type', [SizeVariantType::MEDIUM, SizeVariantType::SMALL2X, SizeVariantType::SMALL]);
+					->whereIn('type', [SizeVariantType::MEDIUM2X, SizeVariantType::MEDIUM, SizeVariantType::SMALL2X, SizeVariantType::SMALL]);
 		$num = $query_ratio->count() - 1;
 		$photo = $query_ratio->skip(rand(0, $num))->first();
 
@@ -64,7 +64,7 @@ trait HasHeaderUrl
 			$query = SizeVariant::query()
 				->select('photo_id')
 				->whereBelongsTo($album->get_photos())
-				->whereIn('type', [SizeVariantType::MEDIUM, SizeVariantType::SMALL2X, SizeVariantType::SMALL]);
+				->whereIn('type', [SizeVariantType::MEDIUM2X, SizeVariantType::MEDIUM, SizeVariantType::SMALL2X, SizeVariantType::SMALL]);
 			$num = $query->count() - 1;
 			$photo = $query->skip(rand(0, $num))->first();
 		}
